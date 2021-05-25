@@ -47,7 +47,21 @@ class Osho extends Piece {
 class Kinsyo extends Piece {
   canToMove(position: Position, player: Player): boolean {
     const distance = this.postion.distanceFrom(position, player);
-    return distance.suji < 2 && distance.dan < 2 && distance.suji != 1 && distance.suji != -1 && distance.dan != 1;
+    return distance.suji < 2 && distance.dan < 2 && this.moveKinsyoRule(distance);
+  }
+  moveKinsyoRule(distance: { suji: number; dan: number }): boolean {
+    return (distance.suji != 1 && distance.dan != -1) || (distance.suji != -1 && distance.dan != -1);
+  }
+}
+
+//銀将
+class Ginsyo extends Piece {
+  canToMove(position: Position, player: Player): boolean {
+    const distance = this.postion.distanceFrom(position, player);
+    return distance.suji < 2 && distance.dan < 2 && this.moveGinsyoRule(distance);
+  }
+  moveGinsyoRule(distance: { suji: number; dan: number }): boolean {
+    return distance.dan != 0 || distance.suji != 0;
   }
 }
 
@@ -55,7 +69,7 @@ class Kinsyo extends Piece {
 class Hisya extends Piece {
   canToMove(position: Position, player: Player): boolean {
     const distance = this.postion.distanceFrom(position, player);
-    return distance.suji < 5 && distance.dan < 5;
+    return distance.suji < 9 && distance.dan < 9;
   }
 }
 
