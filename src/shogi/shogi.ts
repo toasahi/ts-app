@@ -79,7 +79,10 @@ class Keima extends Piece {
 class Hisya extends Piece {
   canToMove(position: Position, player: Player): boolean {
     const distance = this.postion.distanceFrom(position, player);
-    return distance.suji < 9 && distance.dan < 9;
+    return distance.suji < 9 && distance.dan < 9 && this.moveHisyaRuels(distance);
+  }
+  moveHisyaRuels(distance: Distance) {
+    return distance.suji == 0 || distance.dan == 0;
   }
 }
 
@@ -95,7 +98,10 @@ class Kyousya extends Piece {
 class Kakugyo extends Piece {
   canToMove(position: Position, player: Player): boolean {
     const distance = this.postion.distanceFrom(position, player);
-    return distance.suji < 5 && distance.dan < 5;
+    return distance.suji < 5 && distance.dan < 5 && this.moveKakugyoRule(distance);
+  }
+  moveKakugyoRule(distance: Distance) {
+    return distance.dan != 0 && distance.suji != 0;
   }
 }
 
