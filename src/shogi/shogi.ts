@@ -103,6 +103,6 @@ class Kakugyo extends Piece {
 class Fu extends Piece {
   canToMove(position: Position, player: Player): boolean {
     const distance = this.postion.distanceFrom(position, player);
-    return distance.suji < 2;
+    return distance.suji < 2 && distance.dan == 0;
   }
 }
