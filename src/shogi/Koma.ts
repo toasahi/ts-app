@@ -48,7 +48,7 @@ class Hisya extends Piece {
     const distance = this.postion.distanceFrom(position, player);
     return distance.suji < 9 && distance.dan < 9 && this.moveHisyaRuels(distance);
   }
-  moveHisyaRuels(distance: Distance) {
+  moveHisyaRuels(distance: Distance): boolean {
     return distance.suji == 0 || distance.dan == 0;
   }
 }
@@ -67,7 +67,7 @@ class Kakugyo extends Piece {
     const distance = this.postion.distanceFrom(position, player);
     return distance.suji < 5 && distance.dan < 5 && this.moveKakugyoRule(distance);
   }
-  moveKakugyoRule(distance: Distance) {
+  moveKakugyoRule(distance: Distance): boolean {
     return distance.dan != 0 && distance.suji != 0;
   }
 }

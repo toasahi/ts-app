@@ -3,7 +3,7 @@ import { Suji, Dan, Player, Distance } from './types/rules';
 export class Position {
   constructor(private suji: Suji, private dan: Dan) {}
   //パラメーターに渡された位置と現在の距離を比較
-  distanceFrom(postion: Position, player: Player) {
+  distanceFrom(postion: Position, player: Player): Distance {
     if (player === 'first') {
       return {
         suji: Math.abs(postion.suji - this.suji),
@@ -26,7 +26,7 @@ export abstract class Piece {
     this.postion = new Position(suji, dan);
   }
   //駒の移動
-  toMove(position: Position) {
+  toMove(position: Position): void {
     this.postion = position;
   }
 
@@ -81,7 +81,7 @@ class Hisya extends Piece {
     const distance = this.postion.distanceFrom(position, player);
     return distance.suji < 9 && distance.dan < 9 && this.moveHisyaRuels(distance);
   }
-  moveHisyaRuels(distance: Distance) {
+  moveHisyaRuels(distance: Distance): boolean {
     return distance.suji == 0 || distance.dan == 0;
   }
 }
@@ -100,7 +100,7 @@ class Kakugyo extends Piece {
     const distance = this.postion.distanceFrom(position, player);
     return distance.suji < 5 && distance.dan < 5 && this.moveKakugyoRule(distance);
   }
-  moveKakugyoRule(distance: Distance) {
+  moveKakugyoRule(distance: Distance): boolean {
     return distance.dan != 0 && distance.suji != 0;
   }
 }
