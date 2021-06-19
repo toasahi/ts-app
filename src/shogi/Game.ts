@@ -1,7 +1,7 @@
 import { Osho, Kinsyo, Ginsyo, Keima, Kyousya, Kakugyo, Hisya, Fu } from './Koma';
 
-class Game {
-  private pieces = Game.makePieces();
+export class Game {
+  public pieces = Game.makePieces();
   private static makePieces() {
     return [
       new Osho('first', 5, '1'),
@@ -47,3 +47,5 @@ class Game {
     ];
   }
 }
+
+class Table {}
